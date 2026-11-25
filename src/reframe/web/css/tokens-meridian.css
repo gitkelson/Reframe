@@ -1,0 +1,131 @@
+/* 2001 Meridian theme tokens (spec 7).
+   Palette derived from design notes §Full Token Reference, §Surfaces, §Buttons,
+   §Callout Boxes, §Forms (Meridian v3: "the field is blue, the action is red, the detail is amber").
+   Variable NAMES are a contract shared with the canvas modules (timeline.js, minimap.js); values may be tuned.
+   Tag hue and slot values are DERIVED, not taken from the skill (spec 7.2): steel, amber, crimson, lilac, green,
+   terra, indigo and rose alternate dark/light so adjacent slots differ in hue and lightness.
+   Spec §7.1 asks for a tint of --red as today's shading; the amber tint (--amber-bg) is kept because red
+   must stay scarce and amber carries data (skill §The Three-Role Hierarchy) - owner to confirm.
+   Original source cited in the skill: palette inspired by the colour relationships of 2001: A Space Odyssey
+   (tokens defined by the skill; no external numeric source).
+   Measured WCAG contrast ratios are asserted by tests/py/test_theme_contrast.py (see its docstring for the table). */
+:root[data-theme="meridian"] {
+  color-scheme: light;
+  --font-ui: "DM Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "DM Mono", "Cascadia Mono", Consolas, monospace;
+  --font-display: "DM Serif Display", Georgia, serif;
+
+  /* palette (raw) */
+  --surface: #dce8ef;  --surface-mid: #c8d9e3;  --surface-dk: #b0cad6;
+  --navy: #05032a;  --blue: #78a1b7;  --blue-mid: #608691;  --blue-dk: #375464;
+  --red: #d00000;  --red-mid: #8d1425;  --red-dk: #670100;
+  --amber: #9e5f02;  --amber-lt: #be8a2a;  --amber-bg: #fdf0d5;
+
+  /* roles */
+  --canvas-bg: var(--surface);
+  --weekend-shade: var(--surface-mid);
+  --today-shade: var(--amber-bg);   /* the whole day cell for today, behind the bars (no line over the chart) */
+  --grid-line: #b8cfdb;
+  --grid-line-strong: #9db9c8;
+  --text: var(--navy);
+  --text-secondary: var(--blue-dk);
+  --ruler-bg: var(--navy);
+  --ruler-text: #dce8ef;
+  --ruler-text-dim: #8fa8b8;
+  --ruler-line: #2a2850;
+  --now-line: var(--red);
+  --now-line-on-ruler: var(--amber-lt);
+  --minimap-bg: var(--navy);
+  --minimap-bar: #7f9fb1;
+  --minimap-frame: var(--amber-lt);
+  --minimap-frame-fill: rgba(190, 138, 42, 0.18);
+  --focus-ring: var(--blue-dk);   /* palette --blue is 2.2:1 on --surface and fails 3:1 (spec 7.1) */
+  --focus-ring-on-dark: var(--amber-lt);
+  --bar-selected-outline: var(--navy);
+  --bar-untagged: #8aa7b6;
+  --bar-untagged-fg: #05032a;
+  --bar-log-outline: var(--navy);
+  --drag-ghost: rgba(5, 3, 42, 0.35);
+  --marquee-fill: rgba(55, 84, 100, 0.15);
+  --marquee-stroke: var(--blue-dk);
+  --highlight-external: #be8a2a;
+  --lane-header-bg: var(--surface-mid);
+  --lane-header-text: var(--navy);
+
+  /* chrome */
+  --panel-bg: rgba(255, 255, 255, 0.65);
+  --panel-header-bg: var(--navy);
+  --panel-header-text: var(--amber-lt);
+  --border: var(--surface-dk);
+  --button-primary-bg: var(--red);
+  --button-primary-fg: #ffffff;
+  --danger: var(--red-mid);
+  --radius: 10px;
+  --radius-sm: 6px;
+  --info-bg: #e8f0f4;  --info-fg: var(--navy);
+  --warn-bg: var(--amber-bg);  --warn-fg: #5c3700;
+  --error-bg: #f7dfe2;  --error-fg: var(--red-mid);
+
+  /* chrome roles added by the DOM chrome (cards, inputs, controls, menus, tooltips) */
+  --card-border: rgba(255, 255, 255, 0.9);                /* skill §Cards */
+  --input-bg: rgba(255, 255, 255, 0.8);                   /* skill §Forms */
+  --input-border: var(--blue-mid);                        /* skill uses --surface-dk (1.6:1); darkened to pass 3:1 */
+  --input-border-focus: var(--blue-dk);
+  --input-error: var(--red-mid);
+  --control-hover: rgba(55, 84, 100, 0.10);
+  --control-pressed: rgba(55, 84, 100, 0.22);
+  --control-disabled-fg: var(--blue-mid);
+  --row-hover: rgba(55, 84, 100, 0.08);
+  --row-selected: rgba(55, 84, 100, 0.16);
+  --active-bg: var(--navy);                               /* selected chip / pressed toggle on light surfaces */
+  --active-fg: var(--surface);
+  --button-primary-hover: var(--red-mid);                 /* skill §Buttons */
+  --button-primary-pressed: var(--red-dk);
+  --link: var(--blue-dk);
+  --link-hover: var(--navy);
+  --on-dark-text: var(--ruler-text);
+  --on-dark-dim: var(--ruler-text-dim);
+  --on-dark-hover: rgba(220, 232, 239, 0.14);
+  --on-dark-pressed: rgba(220, 232, 239, 0.26);
+  --on-dark-border: var(--ruler-line);
+  --on-dark-active-bg: var(--amber-lt);
+  --on-dark-active-fg: var(--navy);
+  --on-dark-disabled: #6f879a;
+  --tooltip-bg: var(--navy);
+  --tooltip-fg: #ffffff;
+  --popup-bg: #eef4f8;
+  --popup-border: var(--blue-mid);
+  --shadow: 0 6px 20px rgba(5, 3, 42, 0.22);
+  --shadow-sm: 0 1px 3px rgba(5, 3, 42, 0.16);
+  --scrollbar-thumb: var(--blue-mid);
+  --scrollbar-thumb-hover: var(--blue-dk);
+  --hatch-backing: #f4f8fa;                               /* gap colour between hatch stripes (slots 8-15) */
+  --hatch-label-bg: #f4f8fa;                              /* solid backing chip behind a hatched label (spec 7.2) */
+  --hatch-label-fg: var(--navy);
+  --scrim: rgba(5, 3, 42, 0.38);
+
+  /* tag base hues 0-7 (slots 8-15 are the same hues, hatched) and their label colors */
+  --tag-0: #375464;  --tag-0-fg: #ffffff;     /* steel (palette blue-dk) */
+  --tag-1: #be8a2a;  --tag-1-fg: #05032a;     /* amber (palette amber-lt) */
+  --tag-2: #8d1425;  --tag-2-fg: #ffffff;     /* crimson (palette red-mid) */
+  --tag-3: #a99bd0;  --tag-3-fg: #05032a;     /* lilac (derived) */
+  --tag-4: #2f6b4f;  --tag-4-fg: #ffffff;     /* pine (derived) */
+  --tag-5: #be866d;  --tag-5-fg: #05032a;     /* terra (palette) */
+  --tag-6: #4a4a8a;  --tag-6-fg: #ffffff;     /* indigo (derived) */
+  --tag-7: #d4a5a0;  --tag-7-fg: #05032a;     /* rose (palette rose, lightened) */
+
+  /* extra roles (spec 7.1 "roles the skills do not cover"); all derived unless noted */
+  --today-marker: var(--red);                             /* skill: red marker (spec 7.1) */
+  --lane-separator: var(--blue-mid);                      /* derived */
+  --drop-target: var(--amber);                            /* derived: amber = detail, red stays scarce */
+  --chip-implied-bg: #eef4f8;  --chip-implied-fg: var(--blue-dk);  --chip-implied-border: var(--blue-mid);  /* derived */
+  --retired-bg: var(--surface-dk);  --retired-fg: var(--navy);                                        /* derived */
+  --filter-active-bg: var(--amber-bg);  --filter-active-fg: #5c3700;  --filter-active-border: var(--amber);  /* derived */
+  --protect-ok: #2f6b4f;  --protect-pending: #7a4901;  --protect-bad: var(--red-mid);   /* derived (pine, amber hover) */
+  --minimap-files-image: var(--amber-lt);  --minimap-files-other: var(--blue);          /* derived */
+  --file-entry: var(--blue-dk);  --file-entry-fg: var(--navy);  --file-selected: var(--navy);   /* derived */
+  --file-placeholder-bg: var(--surface-mid);  --file-placeholder-fg: var(--blue-dk);            /* derived */
+  --file-badge-bg: var(--navy);  --file-badge-fg: var(--amber-lt);                               /* derived */
+  --hal-eye: #ff1a00;  --hal-glow: rgba(208, 0, 0, 0.55);                   /* derived: R-184 glowing red eye */
+  --monolith: #000000;  --monolith-glow: rgba(253, 240, 213, 0.75);        /* derived: R-185 black slab, amber-bg sunrise */
+}

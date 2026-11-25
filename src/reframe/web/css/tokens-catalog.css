@@ -1,0 +1,129 @@
+/* Industrial Catalog theme tokens (spec 7, R-180). McMaster-Carr-inspired; no logo, name or assets are used.
+   Palette derived from design notes §Reference and scope, §Color tokens,
+   §Contrast and focus, §Typography and density, §Components.
+   Original source cited in the skill: McMaster-Carr home page and screw category page, viewed 2026-11-19; all tokens
+   are derived recommendations, not official brand values.
+   Scarcity (skill §Color tokens): green identifies the system and primary actions, blue is for interactive text and
+   selection, yellow is only a thin rule / small marker and never text on white. White is the working surface,
+   2-4 px radius, no shadows.
+   Roles the skill does not define and all tag slots are DERIVED and marked so; owner sign-off on first build.
+   Measured WCAG contrast ratios are asserted by tests/py/test_theme_contrast.py (see its docstring for the table). */
+:root[data-theme="catalog"] {
+  color-scheme: light;
+  --font-ui: Arial, Helvetica, "Segoe UI", system-ui, sans-serif;      /* skill §Typography: system Arial/Helvetica */
+  --font-mono: Consolas, "Cascadia Mono", "Segoe UI Mono", monospace;    /* derived: system mono */
+  --font-display: Arial, Helvetica, "Segoe UI", system-ui, sans-serif;
+
+  /* palette (raw) */
+  --catalog-green: #315e32;  --catalog-green-hover: #254b27;  --catalog-yellow: #e1c800;
+  --catalog-link: #005b83;  --catalog-link-hover: #003e5c;  --catalog-text: #252525;  --catalog-muted: #545454;
+  --catalog-page: #ffffff;  --catalog-rail: #eeeeee;  --catalog-border: #b8b8b8;  --catalog-border-light: #dedede;
+  --catalog-selected: #f0f3ed;  --catalog-error: #a21d20;
+
+  /* roles */
+  --canvas-bg: var(--catalog-page);
+  --weekend-shade: var(--catalog-rail);
+  --today-shade: var(--catalog-selected);                 /* derived: the skill's pale green selected tint */
+  --grid-line: var(--catalog-border-light);
+  --grid-line-strong: var(--catalog-border);
+  --text: var(--catalog-text);
+  --text-secondary: var(--catalog-muted);
+  --ruler-bg: var(--catalog-rail);
+  --ruler-text: var(--catalog-text);
+  --ruler-text-dim: var(--catalog-muted);
+  --ruler-line: var(--catalog-border);
+  --now-line: var(--catalog-green);
+  --now-line-on-ruler: var(--catalog-green);
+  --minimap-bg: var(--catalog-rail);
+  --minimap-bar: #707070;                                 /* derived */
+  --minimap-frame: var(--catalog-link);
+  --minimap-frame-fill: rgba(0, 91, 131, 0.10);
+  --focus-ring: var(--catalog-link);                      /* skill: 2 px link-blue outline, 2 px offset */
+  --focus-ring-on-dark: var(--catalog-link);              /* the toolbar is the light rail in this theme */
+  --bar-selected-outline: var(--catalog-text);
+  --bar-untagged: #d4d4d4;                                /* derived */
+  --bar-untagged-fg: var(--catalog-text);
+  --bar-log-outline: var(--catalog-text);
+  --drag-ghost: rgba(37, 37, 37, 0.30);
+  --marquee-fill: rgba(0, 91, 131, 0.10);
+  --marquee-stroke: var(--catalog-link);
+  --highlight-external: var(--catalog-yellow);            /* small marker only, never text */
+  --lane-header-bg: var(--catalog-rail);
+  --lane-header-text: var(--catalog-text);
+
+  /* chrome */
+  --panel-bg: var(--catalog-page);
+  --panel-header-bg: var(--catalog-rail);
+  --panel-header-text: var(--catalog-green);              /* skill: green key headings */
+  --border: var(--catalog-border);
+  --button-primary-bg: var(--catalog-green);
+  --button-primary-fg: #ffffff;
+  --danger: var(--catalog-error);
+  --radius: 4px;
+  --radius-sm: 2px;
+  --info-bg: #e6eff4;  --info-fg: var(--catalog-link-hover);   /* derived */
+  --warn-bg: #fbf6d6;  --warn-fg: #4d4400;                     /* derived: pale yellow tint, dark text */
+  --error-bg: #f8e8e8;  --error-fg: var(--catalog-error);      /* derived bg */
+
+  --card-border: var(--catalog-border-light);
+  --input-bg: #ffffff;
+  --input-border: #8a8a8a;                                /* derived: skill --catalog-border is 2.0:1, below 3:1 */
+  --input-border-focus: var(--catalog-link);
+  --input-error: var(--catalog-error);
+  --control-hover: rgba(37, 37, 37, 0.06);
+  --control-pressed: rgba(37, 37, 37, 0.12);
+  --control-disabled-fg: #767676;
+  --row-hover: rgba(0, 91, 131, 0.05);
+  --row-selected: var(--catalog-selected);
+  --active-bg: var(--catalog-green);
+  --active-fg: #ffffff;
+  --button-primary-hover: var(--catalog-green-hover);
+  --button-primary-pressed: #1c3a1d;                      /* derived */
+  --link: var(--catalog-link);
+  --link-hover: var(--catalog-link-hover);
+  --on-dark-text: var(--catalog-text);                    /* "on-dark" = toolbar/status surface; light rail here */
+  --on-dark-dim: var(--catalog-muted);
+  --on-dark-hover: rgba(37, 37, 37, 0.07);
+  --on-dark-pressed: rgba(37, 37, 37, 0.14);
+  --on-dark-border: var(--catalog-border);
+  --on-dark-active-bg: var(--catalog-green);
+  --on-dark-active-fg: #ffffff;
+  --on-dark-disabled: #8a8a8a;
+  --tooltip-bg: var(--catalog-text);
+  --tooltip-fg: #ffffff;
+  --popup-bg: #ffffff;
+  --popup-border: var(--catalog-border);
+  --shadow: none;                                         /* skill §Components: no shadows */
+  --shadow-sm: none;
+  --scrollbar-thumb: var(--catalog-border);
+  --scrollbar-thumb-hover: #8a8a8a;
+  --hatch-backing: #ffffff;
+  --hatch-label-bg: #ffffff;
+  --hatch-label-fg: var(--catalog-text);
+  --scrim: rgba(37, 37, 37, 0.35);
+
+  /* tag base hues 0-7 (slots 8-15 are the same hues, hatched) and their label colors - all derived */
+  --tag-0: #315e32;  --tag-0-fg: #ffffff;     /* green (palette) */
+  --tag-1: #e1c800;  --tag-1-fg: #252525;     /* yellow (palette, as a fill with dark text) */
+  --tag-2: #005b83;  --tag-2-fg: #ffffff;     /* link blue (palette) */
+  --tag-3: #e89a5a;  --tag-3-fg: #252525;     /* orange (derived) */
+  --tag-4: #5b4a8a;  --tag-4-fg: #ffffff;     /* purple (derived) */
+  --tag-5: #a9c98a;  --tag-5-fg: #252525;     /* sage (derived) */
+  --tag-6: #a21d20;  --tag-6-fg: #ffffff;     /* red (palette error) */
+  --tag-7: #8cc4e0;  --tag-7-fg: #252525;     /* sky (derived) */
+
+  /* extra roles (spec 7.1 "roles the skills do not cover"); all derived unless noted */
+  --today-marker: var(--catalog-green);                   /* spec 7.1 */
+  --lane-separator: #808080;                              /* derived */
+  --drop-target: var(--catalog-link);                     /* derived */
+  --chip-implied-bg: #ffffff;  --chip-implied-fg: var(--catalog-muted);  --chip-implied-border: var(--catalog-border);
+  --retired-bg: var(--catalog-rail);  --retired-fg: var(--catalog-muted);
+  --filter-active-bg: var(--catalog-selected);  --filter-active-fg: var(--catalog-green);  --filter-active-border: var(--catalog-green);
+  --protect-ok: var(--catalog-green);  --protect-pending: #7a5c00;  --protect-bad: var(--catalog-error);   /* pending derived */
+  --minimap-files-image: var(--catalog-green);  --minimap-files-other: var(--catalog-link);   /* derived */
+  --file-entry: var(--catalog-muted);  --file-entry-fg: var(--catalog-text);  --file-selected: var(--catalog-link);
+  --file-placeholder-bg: var(--catalog-rail);  --file-placeholder-fg: var(--catalog-muted);
+  --file-badge-bg: var(--catalog-text);  --file-badge-fg: #ffffff;
+  --hal-eye: var(--catalog-error);  --hal-glow: rgba(162, 29, 32, 0.45);     /* derived (only shown in Meridian) */
+  --monolith: #111111;  --monolith-glow: rgba(225, 200, 0, 0.35);           /* derived (only shown in Meridian) */
+}

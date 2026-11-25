@@ -1,0 +1,53 @@
+/* Attachment path bar with Everything search (R-120 – R-124). Uses theme tokens only. */
+
+.path-bar { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1 1 auto; }
+.path-bar__field { position: relative; min-width: 0; }
+.path-bar__input { width: 100%; box-sizing: border-box; }
+.path-bar--path .path-bar__input { font-family: var(--font-mono); }
+
+.path-bar__popup {
+  position: absolute; top: calc(100% + 2px); left: 0; right: 0; z-index: 40;
+  background: var(--popup-bg); border: 1px solid var(--popup-border);
+  border-radius: var(--radius-sm); box-shadow: var(--shadow);
+  color: var(--text); display: flex; flex-direction: column; max-height: 340px;
+}
+.path-bar__popup[hidden] { display: none; }
+
+.path-bar__head {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  padding: 2px 4px 2px 8px; border-bottom: 1px solid var(--popup-border);
+  color: var(--text-secondary); font-size: 12px;
+}
+.path-bar__count { font-variant-numeric: tabular-nums; }
+
+.path-bar__list { list-style: none; margin: 0; padding: 2px 0; overflow-y: auto; min-height: 0; }
+
+.path-bar__option {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 8px;
+  padding: 4px 8px; cursor: pointer; border-left: 2px solid transparent;
+}
+.path-bar__option:hover { background: var(--row-hover); }
+.path-bar__option[aria-selected="true"] { background: var(--row-selected); border-left-color: var(--focus-ring); }
+
+.path-bar__name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 500; }
+.path-bar__meta {
+  display: flex; gap: 8px; color: var(--text-secondary); font-size: 12px;
+  font-variant-numeric: tabular-nums; white-space: nowrap; align-self: center;
+}
+.path-bar__folder {
+  grid-column: 1 / -1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  color: var(--text-secondary); font-size: 12px; font-family: var(--font-mono);
+}
+
+.path-bar__more { display: block; text-align: center; color: var(--text-secondary); font-size: 12px; }
+
+.path-bar__state {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;
+  padding: 4px 8px; border-radius: var(--radius-sm); font-size: 12px; color: var(--text);
+  border: 1px solid var(--popup-border);
+}
+.path-bar__state[hidden] { display: none; }
+.path-bar__state--info { background: var(--info-bg); }
+.path-bar__state--warn { background: var(--warn-bg); }
+.path-bar__state--error { background: var(--error-bg); }
+.path-bar__state-text { min-width: 0; }

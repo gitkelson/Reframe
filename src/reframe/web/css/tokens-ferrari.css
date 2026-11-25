@@ -1,0 +1,132 @@
+/* Ferrari theme tokens (spec 7, R-180), dark. No Cavallino mark, logo or photography is used.
+   Palette derived from design notes §Colors (Brand & Accent, Surface,
+   Hairlines, Text, Semantic), §Typography (Font Family), §Shapes, §Do's and Don'ts.
+   Original source: VoltAgent, awesome-design-md, revision fcc70284932276d085f01ef9f83edde90b1258cb, MIT licence.
+   Scarcity (skill §Do's and Don'ts): Rosso Corsa is the single scarce accent (today marker, primary action);
+   Hypersail Yellow #fff200 is used only for the focus ring; Yellow #f6e500 only for the minimap frame (spec 7.1).
+   Square corners, no drop shadows - depth by brightness steps (#181818 -> #242424 -> #303030).
+   Font: FerrariSans is proprietary; Inter (bundled, OFL) is the open-licence substitute (spec 7.1 D).
+   Bent rule: Semantic Warning #f13a2c is 4.0:1 on the panel, so danger text uses a lighter derived red #ff6b5e;
+   Success #03904a is too dark on the dark panel, so "protected" uses a lighter derived green.
+   Roles the skill does not define and all tag slots are DERIVED and marked so; owner sign-off on first build.
+   Measured WCAG contrast ratios are asserted by tests/py/test_theme_contrast.py (see its docstring for the table). */
+:root[data-theme="ferrari"] {
+  color-scheme: dark;
+  --font-ui: "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Mono", Consolas, monospace;   /* derived */
+  --font-display: "Inter", "Segoe UI", system-ui, sans-serif;
+
+  /* palette (raw) */
+  --rosso-corsa: #da291c;  --rosso-active: #b01e0a;  --rosso-hover: #9d2211;  --hypersail: #fff200;
+  --fer-yellow: #f6e500;  --fer-canvas: #181818;  --fer-elevated: #303030;  --fer-ink: #ffffff;  --fer-body: #969696;
+  --fer-muted: #666666;  --fer-muted-soft: #8f8f8f;  --fer-info: #4c98b9;  --fer-success: #03904a;  --fer-warning: #f13a2c;
+  --fer-panel: #242424;   /* derived brightness step between canvas and elevated */
+
+  /* roles */
+  --canvas-bg: var(--fer-canvas);
+  --weekend-shade: var(--fer-elevated);
+  --today-shade: rgba(218, 41, 28, 0.16);                 /* derived: Rosso Corsa tint */
+  --grid-line: #262626;
+  --grid-line-strong: var(--fer-elevated);
+  --text: var(--fer-ink);
+  --text-secondary: var(--fer-body);
+  --ruler-bg: var(--fer-canvas);
+  --ruler-text: var(--fer-ink);
+  --ruler-text-dim: var(--fer-body);
+  --ruler-line: var(--fer-elevated);                      /* skill hairline */
+  --now-line: var(--rosso-corsa);
+  --now-line-on-ruler: var(--rosso-corsa);
+  --minimap-bg: var(--fer-canvas);
+  --minimap-bar: var(--fer-muted-soft);
+  --minimap-frame: var(--fer-yellow);
+  --minimap-frame-fill: rgba(246, 229, 0, 0.12);
+  --focus-ring: var(--hypersail);                         /* skill: focus-ring colour only */
+  --focus-ring-on-dark: var(--hypersail);
+  --bar-selected-outline: var(--fer-ink);
+  --bar-untagged: var(--fer-muted);
+  --bar-untagged-fg: var(--fer-ink);
+  --bar-log-outline: var(--fer-ink);
+  --drag-ghost: rgba(255, 255, 255, 0.25);
+  --marquee-fill: rgba(255, 255, 255, 0.08);
+  --marquee-stroke: var(--fer-ink);
+  --highlight-external: var(--fer-info);
+  --lane-header-bg: var(--fer-elevated);
+  --lane-header-text: var(--fer-ink);
+
+  /* chrome */
+  --panel-bg: var(--fer-panel);
+  --panel-header-bg: #111111;                             /* derived: one brightness step below canvas */
+  --panel-header-text: var(--fer-ink);
+  --border: var(--fer-elevated);
+  --button-primary-bg: var(--rosso-corsa);
+  --button-primary-fg: #ffffff;
+  --danger: #ff6b5e;                                      /* derived: see header */
+  --radius: 0px;
+  --radius-sm: 0px;
+  --info-bg: #1b2a31;  --info-fg: #cfe6f0;                /* derived from Info */
+  --warn-bg: #33270f;  --warn-fg: #ffd58a;                /* derived */
+  --error-bg: #3a1715;  --error-fg: #ff8a80;              /* derived from Warning */
+
+  --card-border: var(--fer-elevated);
+  --input-bg: #202020;
+  --input-border: var(--fer-muted-soft);
+  --input-border-focus: var(--hypersail);
+  --input-error: #ff6b5e;
+  --control-hover: rgba(255, 255, 255, 0.06);
+  --control-pressed: rgba(255, 255, 255, 0.12);
+  --control-disabled-fg: var(--fer-muted);
+  --row-hover: rgba(255, 255, 255, 0.04);
+  --row-selected: rgba(255, 255, 255, 0.10);
+  --active-bg: var(--fer-ink);
+  --active-fg: var(--fer-canvas);
+  --button-primary-hover: var(--rosso-active);
+  --button-primary-pressed: var(--rosso-hover);
+  --link: var(--fer-ink);                                 /* underlined white */
+  --link-hover: #cccccc;
+  --on-dark-text: var(--fer-ink);
+  --on-dark-dim: var(--fer-body);
+  --on-dark-hover: rgba(255, 255, 255, 0.08);
+  --on-dark-pressed: rgba(255, 255, 255, 0.16);
+  --on-dark-border: var(--fer-elevated);
+  --on-dark-active-bg: var(--fer-ink);
+  --on-dark-active-fg: var(--fer-canvas);
+  --on-dark-disabled: var(--fer-muted);
+  --tooltip-bg: var(--fer-elevated);
+  --tooltip-fg: var(--fer-ink);
+  --popup-bg: var(--fer-panel);
+  --popup-border: #3a3a3a;
+  --shadow: none;                                         /* skill: no drop-shadow tiers */
+  --shadow-sm: none;
+  --scrollbar-thumb: #4a4a4a;
+  --scrollbar-thumb-hover: var(--fer-muted);
+  --hatch-backing: var(--fer-canvas);
+  --hatch-label-bg: var(--fer-elevated);
+  --hatch-label-fg: var(--fer-ink);
+  --scrim: rgba(0, 0, 0, 0.55);
+
+  /* tag base hues 0-7 (slots 8-15 are the same hues, hatched) and their label colors - all derived, light enough for
+     the near-black canvas */
+  --tag-0: #4c98b9;  --tag-0-fg: #181818;     /* info blue (palette) */
+  --tag-1: #e8c26a;  --tag-1-fg: #181818;     /* sand (derived) */
+  --tag-2: #c0504d;  --tag-2-fg: #ffffff;     /* brick (derived; not Rosso Corsa) */
+  --tag-3: #9fd8a8;  --tag-3-fg: #181818;     /* mint (derived) */
+  --tag-4: #7656b8;  --tag-4-fg: #ffffff;     /* violet (derived) */
+  --tag-5: #f0a070;  --tag-5-fg: #181818;     /* apricot (derived) */
+  --tag-6: #349e98;  --tag-6-fg: #181818;     /* teal (derived) */
+  --tag-7: #e0a3c8;  --tag-7-fg: #181818;     /* pink (derived) */
+
+  /* extra roles (spec 7.1 "roles the skills do not cover"); all derived unless noted */
+  --today-marker: var(--rosso-corsa);                     /* spec 7.1 */
+  --lane-separator: #6e6e6e;
+  --drop-target: var(--fer-ink);
+  --chip-implied-bg: var(--fer-panel);  --chip-implied-fg: var(--fer-body);  --chip-implied-border: #3a3a3a;
+  --retired-bg: var(--fer-elevated);  --retired-fg: var(--fer-ink);
+  --filter-active-bg: var(--fer-elevated);  --filter-active-fg: var(--fer-ink);  --filter-active-border: var(--fer-ink);
+  --protect-ok: #3cc27a;  --protect-pending: #ffb04a;  --protect-bad: #ff6b5e;   /* derived, see header */
+  --minimap-files-image: var(--fer-ink);  --minimap-files-other: var(--fer-body);
+  --file-entry: var(--fer-body);  --file-entry-fg: var(--fer-ink);  --file-selected: var(--fer-ink);
+  --file-placeholder-bg: var(--fer-elevated);  --file-placeholder-fg: #b0b0b0;
+  --file-badge-bg: var(--fer-ink);  --file-badge-fg: var(--fer-canvas);
+  --hal-eye: var(--rosso-corsa);  --hal-glow: rgba(218, 41, 28, 0.55);     /* derived (only shown in Meridian) */
+  --monolith: #000000;  --monolith-glow: rgba(246, 229, 0, 0.2);          /* derived (only shown in Meridian) */
+}

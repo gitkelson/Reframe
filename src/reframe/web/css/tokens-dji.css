@@ -1,0 +1,130 @@
+/* DJI theme tokens (spec 7, R-180). No logo, product logotype or photography is used.
+   Palette derived from design notes §Colors (Brand & Accent, Surface, Text,
+   Semantic), §Typography (Font Family), §Shapes, §Do's and Don'ts.
+   Original source: VoltAgent, awesome-design-md, revision fcc70284932276d085f01ef9f83edde90b1258cb, MIT licence.
+   Scarcity (skill §Do's and Don'ts): one blue per surface - DJI Blue #0070d5 only (Store Blue is not used); orange only
+   for small labels/markers; ink #262626, never pure black text. Square tiles, pill controls, no shadows on tiles.
+   Font: Open Sans (bundled, OFL).
+   Bent rule: Error #f5222d is 3.9:1 on the light panel, so danger text uses a deeper derived red #cf1322.
+   Roles the skill does not define and all tag slots are DERIVED and marked so; owner sign-off on first build.
+   Measured WCAG contrast ratios are asserted by tests/py/test_theme_contrast.py (see its docstring for the table). */
+:root[data-theme="dji"] {
+  color-scheme: light;
+  --font-ui: "Open Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "Cascadia Mono", Consolas, monospace;      /* derived: the skill defines no mono */
+  --font-display: "Open Sans", "Segoe UI", system-ui, sans-serif;
+
+  /* palette (raw) */
+  --dji-blue: #0070d5;  --tier-orange: #be4e04;  --badge-orange: #fa8c16;  --dji-canvas: #ffffff;
+  --canvas-soft: #f7f9fa;  --fog: #f5f5f5;  --footer: #272727;  --footer-divider: #414141;
+  --hairline: #f0f0f0;  --divider: #e8e8e8;  --card-line: #d9d9d9;  --control-line: #cccccc;
+  --dji-ink: #262626;  --ink-secondary: #595959;  --ink-tertiary: #8c8c8c;  --slate: #6c7073;  --footer-link: #b3b3b3;
+  --dji-error: #f5222d;
+
+  /* roles */
+  --canvas-bg: var(--dji-canvas);
+  --weekend-shade: var(--canvas-soft);
+  --today-shade: rgba(0, 112, 213, 0.10);                 /* derived: DJI Blue tint */
+  --grid-line: var(--divider);
+  --grid-line-strong: var(--card-line);
+  --text: var(--dji-ink);
+  --text-secondary: var(--ink-secondary);
+  --ruler-bg: var(--footer);
+  --ruler-text: #ffffff;                                  /* spec 7.1: Canvas on Footer (derived) */
+  --ruler-text-dim: var(--footer-link);
+  --ruler-line: var(--footer-divider);
+  --now-line: var(--dji-blue);
+  --now-line-on-ruler: #ffffff;                           /* derived: blue is only 3.0:1 on the charcoal ruler */
+  --minimap-bg: var(--footer);
+  --minimap-bar: var(--ink-tertiary);
+  --minimap-frame: #ffffff;                               /* spec 7.1 (derived) */
+  --minimap-frame-fill: rgba(255, 255, 255, 0.14);
+  --focus-ring: var(--dji-blue);
+  --focus-ring-on-dark: #ffffff;
+  --bar-selected-outline: var(--dji-ink);
+  --bar-untagged: var(--card-line);
+  --bar-untagged-fg: var(--dji-ink);
+  --bar-log-outline: var(--dji-ink);
+  --drag-ghost: rgba(38, 38, 38, 0.30);
+  --marquee-fill: rgba(0, 112, 213, 0.08);
+  --marquee-stroke: var(--dji-blue);
+  --highlight-external: var(--badge-orange);              /* small marker only */
+  --lane-header-bg: var(--fog);
+  --lane-header-text: var(--dji-ink);
+
+  /* chrome */
+  --panel-bg: var(--canvas-soft);                         /* skill: store panels */
+  --panel-header-bg: var(--footer);
+  --panel-header-text: #ffffff;
+  --border: var(--divider);
+  --button-primary-bg: var(--dji-blue);
+  --button-primary-fg: #ffffff;
+  --danger: #cf1322;                                      /* derived: see header */
+  --radius: 0px;                                          /* skill: square tiles and cards */
+  --radius-sm: 9999px;                                    /* skill: pill controls */
+  --info-bg: #e6f0fa;  --info-fg: var(--dji-ink);         /* derived: DJI Blue tint */
+  --warn-bg: #fff4e5;  --warn-fg: #873800;                /* derived: orange tint */
+  --error-bg: #fdecea;  --error-fg: #cf1322;              /* derived */
+
+  --card-border: var(--card-line);
+  --input-bg: #ffffff;
+  --input-border: var(--ink-tertiary);                    /* derived: skill input border #d4d7d9 is below 3:1 */
+  --input-border-focus: var(--dji-blue);
+  --input-error: #cf1322;
+  --control-hover: rgba(38, 38, 38, 0.05);
+  --control-pressed: rgba(38, 38, 38, 0.10);
+  --control-disabled-fg: var(--ink-tertiary);
+  --row-hover: rgba(0, 112, 213, 0.05);
+  --row-selected: #e6f0fa;
+  --active-bg: var(--dji-ink);                            /* skill: dark pill */
+  --active-fg: #ffffff;
+  --button-primary-hover: #005cb0;                        /* derived */
+  --button-primary-pressed: #004a8f;                      /* derived */
+  --link: var(--dji-blue);
+  --link-hover: #005cb0;
+  --on-dark-text: #ffffff;
+  --on-dark-dim: var(--footer-link);
+  --on-dark-hover: rgba(255, 255, 255, 0.10);
+  --on-dark-pressed: rgba(255, 255, 255, 0.20);
+  --on-dark-border: var(--footer-divider);
+  --on-dark-active-bg: #ffffff;
+  --on-dark-active-fg: var(--dji-ink);
+  --on-dark-disabled: var(--slate);
+  --tooltip-bg: var(--footer);
+  --tooltip-fg: #ffffff;
+  --popup-bg: #ffffff;
+  --popup-border: var(--card-line);
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.12);               /* skill: shadows only on floating elements */
+  --shadow-sm: none;
+  --scrollbar-thumb: var(--control-line);
+  --scrollbar-thumb-hover: var(--ink-tertiary);
+  --hatch-backing: #ffffff;
+  --hatch-label-bg: #ffffff;
+  --hatch-label-fg: var(--dji-ink);
+  --scrim: rgba(0, 0, 0, 0.40);
+
+  /* tag base hues 0-7 (slots 8-15 are the same hues, hatched) and their label colors - all derived */
+  --tag-0: #0070d5;  --tag-0-fg: #ffffff;     /* DJI Blue (palette) */
+  --tag-1: #fa8c16;  --tag-1-fg: #262626;     /* badge orange (palette) */
+  --tag-2: #2b6b3f;  --tag-2-fg: #ffffff;     /* forest (derived) */
+  --tag-3: #b7a6e0;  --tag-3-fg: #262626;     /* lavender (derived) */
+  --tag-4: #a8071a;  --tag-4-fg: #ffffff;     /* crimson (derived) */
+  --tag-5: #7fd1c7;  --tag-5-fg: #262626;     /* aqua (derived) */
+  --tag-6: #6b2d6b;  --tag-6-fg: #ffffff;     /* plum (derived) */
+  --tag-7: #e8c547;  --tag-7-fg: #262626;     /* gold (derived) */
+
+  /* extra roles (spec 7.1 "roles the skills do not cover"); all derived unless noted */
+  --today-marker: var(--dji-blue);                        /* spec 7.1 */
+  --lane-separator: var(--ink-tertiary);
+  --drop-target: var(--dji-blue);
+  --chip-implied-bg: var(--fog);  --chip-implied-fg: var(--ink-secondary);  --chip-implied-border: var(--card-line);
+  --retired-bg: var(--divider);  --retired-fg: var(--dji-ink);
+  --filter-active-bg: #e6f0fa;  --filter-active-fg: var(--dji-ink);  --filter-active-border: var(--dji-blue);
+  --protect-ok: #237804;  --protect-pending: var(--tier-orange);  --protect-bad: #cf1322;   /* ok derived */
+  --minimap-files-image: var(--badge-orange);  --minimap-files-other: #ffffff;
+  --file-entry: var(--ink-secondary);  --file-entry-fg: var(--dji-ink);  --file-selected: var(--dji-blue);
+  --file-placeholder-bg: var(--fog);  --file-placeholder-fg: var(--ink-secondary);
+  --file-badge-bg: var(--dji-ink);  --file-badge-fg: #ffffff;
+  --hal-eye: var(--dji-error);  --hal-glow: rgba(245, 34, 45, 0.5);        /* derived (only shown in Meridian) */
+  --monolith: #111111;  --monolith-glow: rgba(250, 140, 22, 0.3);         /* derived (only shown in Meridian) */
+}

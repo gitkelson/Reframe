@@ -1,0 +1,132 @@
+/* Dell 1996 theme tokens (spec 7, R-180). No logo, wordmark, award seal or sticker artwork is used.
+   Palette derived from design notes §Colors (Brand & Accent, Surface,
+   Text, Ribbon-Card Tint Family), §Typography (Font Family), §Shapes, §Do's and Don'ts.
+   Original source: VoltAgent, awesome-design-md, revision fcc70284932276d085f01ef9f83edde90b1258cb, MIT licence.
+   Scarcity (skill §Do's and Don'ts): Dell Red is reserved for the primary action (and the today marker per spec 7.1);
+   the palette is closed (eight ribbon tints + red + yellow + link blue); square corners, hard bevels, no soft shadow.
+   Fonts: Arial Black (display) and Arial/Helvetica (UI), system fonts, not bundled. Times New Roman body copy is not
+   used for UI controls (spec 7.1 maps UI text to Arial).
+   Bent rule: white on Dell Red #e91d2a is 4.49:1, a hair under 4.5:1, so filled red (button) uses a slightly deeper
+   derived red #d91a27; red text (danger) uses #c4161f with an explicit text label (spec 7.1).
+   Roles the skill does not define and all tag slots are DERIVED and marked so; owner sign-off on first build.
+   Measured WCAG contrast ratios are asserted by tests/py/test_theme_contrast.py (see its docstring for the table). */
+:root[data-theme="dell-1996"] {
+  color-scheme: light;
+  --font-ui: Arial, Helvetica, "Segoe UI", system-ui, sans-serif;
+  --font-mono: "Courier New", Consolas, "Segoe UI Mono", monospace;     /* derived: era system mono */
+  --font-display: "Arial Black", Arial, Helvetica, "Segoe UI", sans-serif;
+
+  /* palette (raw) */
+  --dell-red: #e91d2a;  --dell-yellow: #fcc20f;  --dell-purple: #6a26a4;  --frame-ink: #000000;  --dell-canvas: #ffffff;
+  --dell-link: #0000ee;  --tint-olive: #8e8a25;  --tint-sage: #b3bd95;  --tint-salmon: #d77a7a;  --tint-peach: #e6915d;
+  --tint-lime: #c0d4a7;  --tint-sky: #9ab6c8;  --tint-steel: #a5b8c0;  --tint-periwinkle: #8c9ae0;
+  --dell-gray: #c0c0c0;  --dell-gray-lt: #e8e8e8;  --dell-gray-dk: #555555;   /* derived: classic UI grays */
+
+  /* roles */
+  --canvas-bg: var(--dell-canvas);
+  --weekend-shade: var(--dell-gray-lt);                   /* derived (spec 7.1 D) */
+  --today-shade: #fff3c4;                                 /* derived: yellow tint */
+  --grid-line: #e0e0e0;
+  --grid-line-strong: var(--dell-gray);
+  --text: var(--frame-ink);
+  --text-secondary: var(--dell-gray-dk);                  /* derived (spec 7.1 D) */
+  --ruler-bg: var(--frame-ink);
+  --ruler-text: var(--dell-yellow);                       /* spec 7.1: Dell Yellow labels */
+  --ruler-text-dim: var(--dell-gray);
+  --ruler-line: #333333;
+  --now-line: var(--dell-red);
+  --now-line-on-ruler: var(--dell-red);
+  --minimap-bg: var(--frame-ink);
+  --minimap-bar: var(--tint-sky);
+  --minimap-frame: var(--dell-yellow);
+  --minimap-frame-fill: rgba(252, 194, 15, 0.18);
+  --focus-ring: var(--dell-link);
+  --focus-ring-on-dark: var(--dell-yellow);
+  --bar-selected-outline: var(--frame-ink);
+  --bar-untagged: var(--dell-gray);
+  --bar-untagged-fg: var(--frame-ink);
+  --bar-log-outline: var(--frame-ink);
+  --drag-ghost: rgba(0, 0, 0, 0.30);
+  --marquee-fill: rgba(0, 0, 238, 0.08);
+  --marquee-stroke: var(--dell-link);
+  --highlight-external: var(--dell-yellow);
+  --lane-header-bg: var(--dell-gray-lt);
+  --lane-header-text: var(--frame-ink);
+
+  /* chrome */
+  --panel-bg: var(--dell-canvas);
+  --panel-header-bg: var(--frame-ink);
+  --panel-header-text: var(--dell-yellow);
+  --border: var(--frame-ink);                             /* skill: 1 px black hairlines */
+  --button-primary-bg: #d91a27;                           /* derived: see header */
+  --button-primary-fg: #ffffff;
+  --danger: #c4161f;                                      /* derived: see header */
+  --radius: 0px;
+  --radius-sm: 0px;
+  --info-bg: #e3ecf2;  --info-fg: var(--frame-ink);       /* derived: sky tint */
+  --warn-bg: #fff3c4;  --warn-fg: var(--frame-ink);       /* derived: yellow tint */
+  --error-bg: #fbe3e4;  --error-fg: #c4161f;              /* derived */
+
+  --card-border: var(--frame-ink);
+  --input-bg: #ffffff;
+  --input-border: var(--frame-ink);
+  --input-border-focus: var(--dell-link);
+  --input-error: #c4161f;
+  --control-hover: rgba(0, 0, 0, 0.06);
+  --control-pressed: rgba(0, 0, 0, 0.14);
+  --control-disabled-fg: #808080;
+  --row-hover: rgba(0, 0, 238, 0.05);
+  --row-selected: #e3ecf2;
+  --active-bg: var(--frame-ink);
+  --active-fg: var(--dell-yellow);
+  --button-primary-hover: #b8141f;                        /* derived */
+  --button-primary-pressed: #8f0f18;                      /* derived */
+  --link: var(--dell-link);
+  --link-hover: #551a8b;                                  /* derived: classic visited purple */
+  --on-dark-text: #ffffff;
+  --on-dark-dim: var(--dell-gray);
+  --on-dark-hover: rgba(255, 255, 255, 0.14);
+  --on-dark-pressed: rgba(255, 255, 255, 0.26);
+  --on-dark-border: var(--dell-gray-dk);
+  --on-dark-active-bg: var(--dell-yellow);
+  --on-dark-active-fg: var(--frame-ink);
+  --on-dark-disabled: #808080;
+  --tooltip-bg: #ffffe1;                                  /* derived: era tooltip yellow */
+  --tooltip-fg: var(--frame-ink);
+  --popup-bg: #ffffff;
+  --popup-border: var(--frame-ink);
+  --shadow: 2px 2px 0 #000000;                            /* skill: hard bevel, never a soft shadow */
+  --shadow-sm: 1px 1px 0 #000000;
+  --scrollbar-thumb: var(--dell-gray);
+  --scrollbar-thumb-hover: #808080;
+  --hatch-backing: #ffffff;
+  --hatch-label-bg: #ffffff;
+  --hatch-label-fg: var(--frame-ink);
+  --scrim: rgba(0, 0, 0, 0.40);
+
+  /* tag base hues 0-7 (slots 8-15 are the same hues, hatched) and their label colors - derived from the closed
+     palette (ribbon tints, darkened where white labels need it) */
+  --tag-0: #b04848;  --tag-0-fg: #ffffff;     /* salmon, darkened */
+  --tag-1: #c0d4a7;  --tag-1-fg: #000000;     /* lime tint */
+  --tag-2: #4a58a8;  --tag-2-fg: #ffffff;     /* periwinkle, darkened */
+  --tag-3: #e6915d;  --tag-3-fg: #000000;     /* peach tint */
+  --tag-4: #6e6a1c;  --tag-4-fg: #ffffff;     /* olive, darkened */
+  --tag-5: #9ab6c8;  --tag-5-fg: #000000;     /* sky tint */
+  --tag-6: #6a26a4;  --tag-6-fg: #ffffff;     /* Dell purple */
+  --tag-7: #a5b8c0;  --tag-7-fg: #000000;     /* steel tint */
+
+  /* extra roles (spec 7.1 "roles the skills do not cover"); all derived unless noted */
+  --today-marker: var(--dell-red);                        /* spec 7.1 */
+  --lane-separator: #666666;
+  --drop-target: var(--dell-link);
+  --chip-implied-bg: #ffffff;  --chip-implied-fg: var(--dell-gray-dk);  --chip-implied-border: #808080;
+  --retired-bg: var(--dell-gray);  --retired-fg: var(--frame-ink);
+  --filter-active-bg: var(--dell-yellow);  --filter-active-fg: var(--frame-ink);  --filter-active-border: var(--frame-ink);
+  --protect-ok: #5e5b18;  --protect-pending: #7a5c00;  --protect-bad: #c4161f;   /* derived: dark olive / dark yellow / red */
+  --minimap-files-image: var(--dell-yellow);  --minimap-files-other: var(--tint-periwinkle);
+  --file-entry: var(--dell-gray-dk);  --file-entry-fg: var(--frame-ink);  --file-selected: var(--dell-link);
+  --file-placeholder-bg: var(--dell-gray);  --file-placeholder-fg: var(--frame-ink);
+  --file-badge-bg: var(--frame-ink);  --file-badge-fg: var(--dell-yellow);
+  --hal-eye: var(--dell-red);  --hal-glow: rgba(233, 29, 42, 0.5);         /* derived (only shown in Meridian) */
+  --monolith: #000000;  --monolith-glow: rgba(252, 194, 15, 0.35);        /* derived (only shown in Meridian) */
+}

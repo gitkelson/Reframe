@@ -1,0 +1,14 @@
+Everything SDK - vendored for Reframe (spec R-126)
+
+Source URL:            https://www.voidtools.com/Everything-SDK.zip
+Download date:         2026-11-24
+Zip Last-Modified:     Fri, 14 Aug 2026 02:26:15 GMT (HTTP header), 238231 bytes
+SDK version:           EVERYTHING_SDK_VERSION 2 (include\Everything.h); IPC query v2 (Everything 1.4.1+)
+Vendored file:         Everything64.dll (x64, Everything_GetTargetMachine() = 2), matches 64-bit Python 3.12
+DLL file version:      none - the DLL carries no VERSIONINFO resource
+DLL SHA-256:           81B5BE18126ACD2C2B913F8F4A821E476B18393CDD3DEBD03387C50AFD8DB88F
+Everything (running):  1.4.1.1032 (Everything_GetMajorVersion/MinorVersion/Revision/BuildNumber via this DLL)
+                       C:\Program Files\Everything\Everything.exe file version 1.4.1.1032
+Licence:               MIT (see LICENSE.txt) - permits use, copying, distribution and bundling
+                       provided the copyright and permission notice is included.
+Not vendored:          32-bit/ARM DLLs, .lib files, headers, sources, examples (unused).

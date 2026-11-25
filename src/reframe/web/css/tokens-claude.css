@@ -1,0 +1,133 @@
+/* Claude theme tokens (spec 7, R-180). No logo, spike mark or wordmark is used.
+   Palette derived from design notes §Colors (Brand & Accent, Surface,
+   Text, Semantic), §Typography (Font Family), §Shapes, §Do's and Don'ts.
+   Original source: VoltAgent, awesome-design-md, revision fcc70284932276d085f01ef9f83edde90b1258cb, MIT licence
+   (per the design palette notes).
+   Scarcity (skill §Do's and Don'ts): coral is scarce (today marker and the primary action only), the canvas stays warm
+   cream and never pure white, no cool blue accent. Shape: 8 px controls, 12 px cards, minimal shadow.
+   Fonts: Inter for StyreneB (body), Cormorant Garamond as the open serif for Copernicus/Tiempos (display), JetBrains
+   Mono; the skill names Inter as the body substitute, Cormorant Garamond is the spec 7.1 choice.
+   Bent rule: white on Coral #cc785c is 3.3:1, below 4.5:1, so the primary button rests on Coral Active #a9583e (the
+   skill's own press colour) and darkens further on hover/press (derived).
+   Roles the skill does not define and all tag slots are DERIVED and marked so; owner sign-off on first build.
+   Measured WCAG contrast ratios are asserted by tests/py/test_theme_contrast.py (see its docstring for the table). */
+:root[data-theme="claude"] {
+  color-scheme: light;
+  --font-ui: "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Mono", Consolas, monospace;
+  --font-display: "Cormorant Garamond", Garamond, "Times New Roman", "Segoe UI", serif;
+
+  /* palette (raw) */
+  --coral: #cc785c;  --coral-active: #a9583e;  --accent-teal: #5db8a6;  --accent-amber: #e8a55a;
+  --cream: #faf9f5;  --surface-soft: #f5f0e8;  --surface-card: #efe9de;  --cream-strong: #e8e0d2;
+  --surface-dark: #181715;  --surface-dark-elevated: #252320;  --hairline: #e6dfd8;
+  --ink: #141413;  --body: #3d3d3a;  --muted: #6c6a64;  --muted-soft: #8e8b82;  --on-dark: #faf9f5;
+  --on-dark-soft: #a09d96;  --error: #c64545;
+
+  /* roles */
+  --canvas-bg: var(--cream);
+  --weekend-shade: var(--surface-card);
+  --today-shade: rgba(204, 120, 92, 0.14);                /* derived: coral tint */
+  --grid-line: var(--hairline);
+  --grid-line-strong: #d6ccbd;                            /* derived */
+  --text: var(--ink);
+  --text-secondary: var(--muted);
+  --ruler-bg: var(--surface-dark);
+  --ruler-text: var(--on-dark);
+  --ruler-text-dim: var(--on-dark-soft);
+  --ruler-line: #3a3835;                                  /* derived */
+  --now-line: var(--coral);
+  --now-line-on-ruler: var(--coral);
+  --minimap-bg: var(--surface-dark);
+  --minimap-bar: var(--muted-soft);
+  --minimap-frame: var(--accent-amber);
+  --minimap-frame-fill: rgba(232, 165, 90, 0.16);
+  --focus-ring: var(--ink);                               /* spec 7.1: Ink (derived) */
+  --focus-ring-on-dark: var(--on-dark);
+  --bar-selected-outline: var(--ink);
+  --bar-untagged: #d8cfc0;                                /* derived */
+  --bar-untagged-fg: var(--ink);
+  --bar-log-outline: var(--ink);
+  --drag-ghost: rgba(20, 20, 19, 0.30);
+  --marquee-fill: rgba(20, 20, 19, 0.08);
+  --marquee-stroke: var(--ink);
+  --highlight-external: var(--accent-amber);              /* skill: amber for inline highlights */
+  --lane-header-bg: var(--surface-soft);
+  --lane-header-text: var(--ink);
+
+  /* chrome */
+  --panel-bg: var(--surface-soft);
+  --panel-header-bg: var(--surface-dark);
+  --panel-header-text: var(--on-dark);
+  --border: var(--hairline);
+  --button-primary-bg: var(--coral-active);               /* see header: coral fails 4.5:1 with white text */
+  --button-primary-fg: #ffffff;
+  --danger: #a83636;                                      /* derived: skill Error #c64545 is 4.3:1 on the panel */
+  --radius: 12px;
+  --radius-sm: 8px;
+  --info-bg: var(--surface-card);  --info-fg: var(--body);
+  --warn-bg: #f8ecd2;  --warn-fg: #5c4300;                /* derived */
+  --error-bg: #f6e3e0;  --error-fg: #a83636;              /* derived */
+
+  --card-border: var(--hairline);
+  --input-bg: #fffdf9;                                    /* derived: warm, not pure white */
+  --input-border: var(--muted-soft);
+  --input-border-focus: var(--ink);
+  --input-error: #a83636;
+  --control-hover: rgba(20, 20, 19, 0.05);
+  --control-pressed: rgba(20, 20, 19, 0.10);
+  --control-disabled-fg: var(--muted-soft);
+  --row-hover: rgba(20, 20, 19, 0.04);
+  --row-selected: var(--cream-strong);                    /* skill: selected category tabs */
+  --active-bg: var(--surface-dark);
+  --active-fg: var(--on-dark);
+  --button-primary-hover: #8f4630;                        /* derived */
+  --button-primary-pressed: #7a3a27;                      /* derived */
+  --link: var(--body);                                    /* derived: links stay ink-toned (underlined), coral stays scarce */
+  --link-hover: var(--ink);
+  --on-dark-text: var(--on-dark);
+  --on-dark-dim: var(--on-dark-soft);
+  --on-dark-hover: rgba(250, 249, 245, 0.10);
+  --on-dark-pressed: rgba(250, 249, 245, 0.20);
+  --on-dark-border: #3a3835;
+  --on-dark-active-bg: var(--accent-amber);
+  --on-dark-active-fg: var(--ink);
+  --on-dark-disabled: var(--muted);
+  --tooltip-bg: var(--surface-dark);
+  --tooltip-fg: var(--on-dark);
+  --popup-bg: var(--cream);
+  --popup-border: #d6ccbd;
+  --shadow: 0 4px 16px rgba(20, 20, 19, 0.10);            /* skill: minimal shadow */
+  --shadow-sm: 0 1px 2px rgba(20, 20, 19, 0.08);
+  --scrollbar-thumb: #c9bfae;
+  --scrollbar-thumb-hover: var(--muted-soft);
+  --hatch-backing: var(--cream);
+  --hatch-label-bg: var(--cream);
+  --hatch-label-fg: var(--ink);
+  --scrim: rgba(20, 20, 19, 0.35);
+
+  /* tag base hues 0-7 (slots 8-15 are the same hues, hatched) and their label colors - all derived, warm and muted */
+  --tag-0: #a9583e;  --tag-0-fg: #ffffff;     /* coral active (palette) */
+  --tag-1: #5db8a6;  --tag-1-fg: #141413;     /* teal (palette) */
+  --tag-2: #7b4a6e;  --tag-2-fg: #ffffff;     /* plum (derived) */
+  --tag-3: #e8a55a;  --tag-3-fg: #141413;     /* amber (palette) */
+  --tag-4: #3f6b4a;  --tag-4-fg: #ffffff;     /* moss (derived) */
+  --tag-5: #d9a0a0;  --tag-5-fg: #141413;     /* dusty rose (derived) */
+  --tag-6: #44506b;  --tag-6-fg: #ffffff;     /* slate (derived, muted - no saturated blue) */
+  --tag-7: #c2c08a;  --tag-7-fg: #141413;     /* khaki (derived) */
+
+  /* extra roles (spec 7.1 "roles the skills do not cover"); all derived unless noted */
+  --today-marker: var(--coral);                           /* spec 7.1 */
+  --lane-separator: var(--muted);
+  --drop-target: #2f7a6c;                                 /* derived: deep teal */
+  --chip-implied-bg: var(--surface-soft);  --chip-implied-fg: var(--muted);  --chip-implied-border: var(--hairline);
+  --retired-bg: var(--cream-strong);  --retired-fg: var(--body);
+  --filter-active-bg: #f8ead9;  --filter-active-fg: var(--ink);  --filter-active-border: var(--accent-amber);
+  --protect-ok: #2a6e3e;  --protect-pending: #7a5a00;  --protect-bad: #a83636;   /* derived from Success/Warning/Error */
+  --minimap-files-image: var(--accent-amber);  --minimap-files-other: var(--accent-teal);
+  --file-entry: var(--muted);  --file-entry-fg: var(--ink);  --file-selected: var(--ink);
+  --file-placeholder-bg: var(--surface-card);  --file-placeholder-fg: var(--body);
+  --file-badge-bg: var(--surface-dark);  --file-badge-fg: var(--on-dark);
+  --hal-eye: var(--error);  --hal-glow: rgba(198, 69, 69, 0.5);            /* derived (only shown in Meridian) */
+  --monolith: var(--ink);  --monolith-glow: rgba(232, 165, 90, 0.4);      /* derived (only shown in Meridian) */
+}

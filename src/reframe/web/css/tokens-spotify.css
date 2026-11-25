@@ -1,0 +1,129 @@
+/* Spotify theme tokens (spec 7, R-180), dark. No logo, wordmark or album art is used.
+   Palette derived from design notes §2 Color Palette & Roles (Primary
+   Brand, Text, Semantic, Surface & Border, Shadows), §Typography Rules (Font Families), §7 Do's and Don'ts.
+   Original source: VoltAgent, awesome-design-md, revision fcc70284932276d085f01ef9f83edde90b1258cb, MIT licence.
+   Scarcity (skill §7): Spotify Green #1ed760 is functional only - today marker, focus/selection, active states, the
+   primary action - never decorative or a background; the UI is otherwise achromatic. Pills and circles; heavy shadows.
+   Font: SpotifyMix is proprietary; Inter (bundled, OFL) is the open-licence substitute (spec 7.1 D).
+   Roles the skill does not define and all tag slots are DERIVED and marked so; owner sign-off on first build.
+   Measured WCAG contrast ratios are asserted by tests/py/test_theme_contrast.py (see its docstring for the table). */
+:root[data-theme="spotify"] {
+  color-scheme: dark;
+  --font-ui: "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Mono", Consolas, monospace;   /* derived */
+  --font-display: "Inter", "Segoe UI", system-ui, sans-serif;
+
+  /* palette (raw) */
+  --spotify-green: #1ed760;  --green-border: #1db954;  --near-black: #121212;  --dark-surface: #181818;
+  --mid-dark: #1f1f1f;  --dark-card: #252525;  --mid-card: #272727;  --silver: #b3b3b3;  --near-white: #cbcbcb;
+  --border-gray: #4d4d4d;  --light-border: #7c7c7c;  --negative-red: #f3727f;  --warning-orange: #ffa42b;
+  --announcement-blue: #539df5;
+
+  /* roles */
+  --canvas-bg: var(--near-black);
+  --weekend-shade: var(--dark-surface);
+  --today-shade: rgba(30, 215, 96, 0.10);                 /* derived: functional green tint marks today */
+  --grid-line: #222222;
+  --grid-line-strong: #333333;
+  --text: #ffffff;
+  --text-secondary: var(--silver);
+  --ruler-bg: var(--near-black);
+  --ruler-text: #ffffff;
+  --ruler-text-dim: var(--silver);
+  --ruler-line: #2a2a2a;
+  --now-line: var(--spotify-green);
+  --now-line-on-ruler: var(--spotify-green);
+  --minimap-bg: var(--near-black);
+  --minimap-bar: var(--light-border);
+  --minimap-frame: var(--spotify-green);
+  --minimap-frame-fill: rgba(30, 215, 96, 0.12);
+  --focus-ring: var(--spotify-green);
+  --focus-ring-on-dark: var(--spotify-green);
+  --bar-selected-outline: #ffffff;
+  --bar-untagged: #535353;
+  --bar-untagged-fg: #ffffff;
+  --bar-log-outline: #ffffff;
+  --drag-ghost: rgba(255, 255, 255, 0.25);
+  --marquee-fill: rgba(255, 255, 255, 0.08);
+  --marquee-stroke: var(--spotify-green);
+  --highlight-external: var(--announcement-blue);
+  --lane-header-bg: var(--dark-surface);
+  --lane-header-text: #ffffff;
+
+  /* chrome */
+  --panel-bg: var(--dark-surface);
+  --panel-header-bg: #000000;                             /* derived: a shade below Near Black */
+  --panel-header-text: #ffffff;
+  --border: #2a2a2a;                                      /* derived: subtle, the skill avoids raw grey borders */
+  --button-primary-bg: var(--spotify-green);
+  --button-primary-fg: #000000;
+  --danger: var(--negative-red);
+  --radius: 8px;
+  --radius-sm: 9999px;                                    /* skill: pill buttons */
+  --info-bg: #15233a;  --info-fg: #cfe1ff;                /* derived from Announcement Blue */
+  --warn-bg: #2e2412;  --warn-fg: var(--warning-orange);
+  --error-bg: #2e1418;  --error-fg: var(--negative-red);
+
+  --card-border: #282828;
+  --input-bg: var(--mid-dark);
+  --input-border: var(--light-border);
+  --input-border-focus: var(--spotify-green);
+  --input-error: var(--negative-red);
+  --control-hover: rgba(255, 255, 255, 0.07);
+  --control-pressed: rgba(255, 255, 255, 0.14);
+  --control-disabled-fg: var(--light-border);
+  --row-hover: rgba(255, 255, 255, 0.05);
+  --row-selected: rgba(255, 255, 255, 0.10);
+  --active-bg: var(--spotify-green);                      /* skill: green for active states */
+  --active-fg: #000000;
+  --button-primary-hover: #3be477;                        /* derived: brighter on hover */
+  --button-primary-pressed: var(--green-border);
+  --link: #ffffff;
+  --link-hover: var(--spotify-green);
+  --on-dark-text: #ffffff;
+  --on-dark-dim: var(--silver);
+  --on-dark-hover: rgba(255, 255, 255, 0.08);
+  --on-dark-pressed: rgba(255, 255, 255, 0.16);
+  --on-dark-border: #2a2a2a;
+  --on-dark-active-bg: var(--spotify-green);
+  --on-dark-active-fg: #000000;
+  --on-dark-disabled: #535353;
+  --tooltip-bg: #282828;
+  --tooltip-fg: #ffffff;
+  --popup-bg: #282828;
+  --popup-border: #3e3e3e;
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.5);                /* skill: heavy shadow */
+  --shadow-sm: 0 8px 8px rgba(0, 0, 0, 0.3);              /* skill: medium shadow */
+  --scrollbar-thumb: #535353;
+  --scrollbar-thumb-hover: var(--light-border);
+  --hatch-backing: var(--near-black);
+  --hatch-label-bg: #282828;
+  --hatch-label-fg: #ffffff;
+  --scrim: rgba(0, 0, 0, 0.60);
+
+  /* tag base hues 0-7 (slots 8-15 are the same hues, hatched) and their label colors - all derived ("album art"
+     colours, light enough for the dark canvas; Spotify Green is not used for data) */
+  --tag-0: #539df5;  --tag-0-fg: #000000;     /* announcement blue (palette) */
+  --tag-1: #ffa42b;  --tag-1-fg: #000000;     /* warning orange (palette) */
+  --tag-2: #b36bd6;  --tag-2-fg: #000000;     /* orchid (derived) */
+  --tag-3: #c8e66b;  --tag-3-fg: #000000;     /* lime (derived) */
+  --tag-4: #d40f52;  --tag-4-fg: #ffffff;     /* raspberry (derived) */
+  --tag-5: #7fd8e8;  --tag-5-fg: #000000;     /* cyan (derived) */
+  --tag-6: #c87f3a;  --tag-6-fg: #000000;     /* copper (derived) */
+  --tag-7: #f3a6c8;  --tag-7-fg: #000000;     /* pink (derived) */
+
+  /* extra roles (spec 7.1 "roles the skills do not cover"); all derived unless noted */
+  --today-marker: var(--spotify-green);                   /* spec 7.1 */
+  --lane-separator: #6a6a6a;
+  --drop-target: var(--spotify-green);                    /* functional */
+  --chip-implied-bg: var(--mid-dark);  --chip-implied-fg: var(--silver);  --chip-implied-border: var(--border-gray);
+  --retired-bg: #3e3e3e;  --retired-fg: #ffffff;
+  --filter-active-bg: var(--spotify-green);  --filter-active-fg: #000000;  --filter-active-border: var(--spotify-green);
+  --protect-ok: var(--spotify-green);  --protect-pending: var(--warning-orange);  --protect-bad: var(--negative-red);
+  --minimap-files-image: var(--spotify-green);  --minimap-files-other: var(--announcement-blue);
+  --file-entry: var(--silver);  --file-entry-fg: #ffffff;  --file-selected: var(--spotify-green);
+  --file-placeholder-bg: #282828;  --file-placeholder-fg: var(--silver);
+  --file-badge-bg: #ffffff;  --file-badge-fg: #000000;
+  --hal-eye: #e22134;  --hal-glow: rgba(226, 33, 52, 0.55);               /* derived (only shown in Meridian) */
+  --monolith: #000000;  --monolith-glow: rgba(30, 215, 96, 0.2);          /* derived (only shown in Meridian) */
+}

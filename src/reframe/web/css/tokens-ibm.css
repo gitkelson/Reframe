@@ -1,0 +1,132 @@
+/* IBM theme tokens (spec 7, R-180). No logo, wordmark or illustration is used.
+   Palette derived from design notes §Colors (Brand & Accent, Surface, Text,
+   Semantic) and the front-matter colour tokens, §Typography (Font Family), §Shapes, §Do's and Don'ts.
+   Original source: VoltAgent, awesome-design-md, revision fcc70284932276d085f01ef9f83edde90b1258cb, MIT licence.
+   Scarcity (skill §Do's and Don'ts): IBM Blue #0f62fe is the only chromatic accent (links, primary action, focus,
+   today marker); status uses the documented green / yellow / red. Square, flat, 1 px hairlines, no shadows.
+   Fonts: IBM Plex Sans and IBM Plex Mono (bundled, OFL; mono is the same family, spec 7.1 D).
+   Bent rule: on the charcoal ruler IBM Blue is 3.6:1 but reads poorly, so the now line there uses the lighter Carbon
+   blue-40 #78a9ff (derived). Status text uses darker derived steps (green-70, yellow-70, red-70) so it reaches 4.5:1.
+   Roles the skill does not define and all tag slots are DERIVED and marked so; owner sign-off on first build.
+   Measured WCAG contrast ratios are asserted by tests/py/test_theme_contrast.py (see its docstring for the table). */
+:root[data-theme="ibm"] {
+  color-scheme: light;
+  --font-ui: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", "Cascadia Mono", Consolas, monospace;
+  --font-display: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+
+  /* palette (raw) */
+  --ibm-blue: #0f62fe;  --blue-60: #0043ce;  --blue-80: #002d9c;  --blue-hover: #0050e6;  --ibm-ink: #161616;
+  --ink-muted: #525252;  --ink-subtle: #8c8c8c;  --ibm-canvas: #ffffff;  --surface-1: #f4f4f4;  --surface-2: #e0e0e0;
+  --inverse-canvas: #161616;  --inverse-surface-1: #262626;  --inverse-ink-muted: #c6c6c6;
+  --success: #24a148;  --warning: #f1c21b;  --error: #da1e28;
+  --gray-60: #6f6f6f;  --gray-80: #393939;   /* derived: Carbon neutral steps */
+
+  /* roles */
+  --canvas-bg: var(--ibm-canvas);
+  --weekend-shade: var(--surface-1);
+  --today-shade: rgba(15, 98, 254, 0.08);                 /* derived: IBM Blue tint */
+  --grid-line: var(--surface-2);
+  --grid-line-strong: var(--inverse-ink-muted);
+  --text: var(--ibm-ink);
+  --text-secondary: var(--ink-muted);
+  --ruler-bg: var(--inverse-canvas);
+  --ruler-text: #ffffff;
+  --ruler-text-dim: var(--inverse-ink-muted);
+  --ruler-line: var(--gray-80);
+  --now-line: var(--ibm-blue);
+  --now-line-on-ruler: #78a9ff;                           /* derived: see header */
+  --minimap-bg: var(--inverse-canvas);
+  --minimap-bar: var(--ink-subtle);
+  --minimap-frame: #ffffff;                               /* spec 7.1: Canvas on Inverse (derived) */
+  --minimap-frame-fill: rgba(255, 255, 255, 0.14);
+  --focus-ring: var(--ibm-blue);
+  --focus-ring-on-dark: #ffffff;
+  --bar-selected-outline: var(--ibm-ink);
+  --bar-untagged: var(--inverse-ink-muted);
+  --bar-untagged-fg: var(--ibm-ink);
+  --bar-log-outline: var(--ibm-ink);
+  --drag-ghost: rgba(22, 22, 22, 0.30);
+  --marquee-fill: rgba(15, 98, 254, 0.08);
+  --marquee-stroke: var(--ibm-blue);
+  --highlight-external: var(--warning);                   /* documented status yellow, as a flash/marker only */
+  --lane-header-bg: var(--surface-1);
+  --lane-header-text: var(--ibm-ink);
+
+  /* chrome */
+  --panel-bg: var(--surface-1);
+  --panel-header-bg: var(--inverse-canvas);
+  --panel-header-text: #ffffff;
+  --border: var(--surface-2);
+  --button-primary-bg: var(--ibm-blue);
+  --button-primary-fg: #ffffff;
+  --danger: var(--error);
+  --radius: 0px;
+  --radius-sm: 0px;
+  --info-bg: #edf5ff;  --info-fg: var(--ibm-ink);         /* derived: Carbon blue-10 */
+  --warn-bg: #fcf4d6;  --warn-fg: var(--ibm-ink);         /* derived: Carbon yellow-10 */
+  --error-bg: #fff1f1;  --error-fg: var(--error);         /* derived: Carbon red-10 */
+
+  --card-border: var(--surface-2);
+  --input-bg: var(--surface-1);                           /* Carbon field */
+  --input-border: var(--gray-60);
+  --input-border-focus: var(--ibm-blue);
+  --input-error: var(--error);
+  --control-hover: rgba(22, 22, 22, 0.06);
+  --control-pressed: rgba(22, 22, 22, 0.14);
+  --control-disabled-fg: var(--ink-subtle);
+  --row-hover: rgba(22, 22, 22, 0.05);
+  --row-selected: var(--surface-2);
+  --active-bg: var(--ibm-ink);
+  --active-fg: #ffffff;
+  --button-primary-hover: var(--blue-hover);
+  --button-primary-pressed: var(--blue-80);
+  --link: var(--ibm-blue);
+  --link-hover: var(--blue-60);
+  --on-dark-text: #ffffff;
+  --on-dark-dim: var(--inverse-ink-muted);
+  --on-dark-hover: rgba(255, 255, 255, 0.10);
+  --on-dark-pressed: rgba(255, 255, 255, 0.20);
+  --on-dark-border: var(--gray-80);
+  --on-dark-active-bg: var(--ibm-blue);
+  --on-dark-active-fg: #ffffff;
+  --on-dark-disabled: var(--gray-60);
+  --tooltip-bg: var(--gray-80);
+  --tooltip-fg: #ffffff;
+  --popup-bg: #ffffff;
+  --popup-border: var(--inverse-ink-muted);
+  --shadow: none;                                         /* skill: skip drop shadows */
+  --shadow-sm: none;
+  --scrollbar-thumb: var(--inverse-ink-muted);
+  --scrollbar-thumb-hover: var(--ink-subtle);
+  --hatch-backing: #ffffff;
+  --hatch-label-bg: #ffffff;
+  --hatch-label-fg: var(--ibm-ink);
+  --scrim: rgba(22, 22, 22, 0.50);
+
+  /* tag base hues 0-7 (slots 8-15 are the same hues, hatched) and their label colors - derived from the Carbon
+     categorical data-visualisation steps (tags are data, not accents) */
+  --tag-0: #6929c4;  --tag-0-fg: #ffffff;     /* purple-70 */
+  --tag-1: #33b1ff;  --tag-1-fg: #161616;     /* cyan-40 */
+  --tag-2: #9f1853;  --tag-2-fg: #ffffff;     /* magenta-70 */
+  --tag-3: #42be65;  --tag-3-fg: #161616;     /* green-40 */
+  --tag-4: #002d9c;  --tag-4-fg: #ffffff;     /* blue-80 */
+  --tag-5: #ff832b;  --tag-5-fg: #161616;     /* orange-40 */
+  --tag-6: #005d5d;  --tag-6-fg: #ffffff;     /* teal-70 */
+  --tag-7: #f1c21b;  --tag-7-fg: #161616;     /* yellow-30 */
+
+  /* extra roles (spec 7.1 "roles the skills do not cover"); all derived unless noted */
+  --today-marker: var(--ibm-blue);                        /* spec 7.1 */
+  --lane-separator: var(--gray-60);
+  --drop-target: var(--ibm-blue);
+  --chip-implied-bg: var(--surface-2);  --chip-implied-fg: var(--ink-muted);  --chip-implied-border: var(--inverse-ink-muted);
+  --retired-bg: var(--surface-2);  --retired-fg: var(--ibm-ink);
+  --filter-active-bg: #edf5ff;  --filter-active-fg: var(--blue-60);  --filter-active-border: var(--ibm-blue);
+  --protect-ok: #0e6027;  --protect-pending: #684e00;  --protect-bad: #a2191f;   /* derived: green-70, yellow-70, red-70 */
+  --minimap-files-image: #78a9ff;  --minimap-files-other: #ff7eb6;   /* derived: blue-40, magenta-40 */
+  --file-entry: var(--ink-muted);  --file-entry-fg: var(--ibm-ink);  --file-selected: var(--ibm-blue);
+  --file-placeholder-bg: var(--surface-2);  --file-placeholder-fg: var(--ink-muted);
+  --file-badge-bg: var(--inverse-canvas);  --file-badge-fg: #ffffff;
+  --hal-eye: var(--error);  --hal-glow: rgba(218, 30, 40, 0.5);            /* derived (only shown in Meridian) */
+  --monolith: var(--ibm-ink);  --monolith-glow: rgba(120, 169, 255, 0.35); /* derived (only shown in Meridian) */
+}

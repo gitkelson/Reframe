@@ -1,0 +1,132 @@
+/* SpaceX theme tokens (spec 7, R-180), dark. No logo, wordmark or photography is used.
+   Palette derived from design notes §Colors (Brand & Accent, Surface,
+   Text, Link), §Typography (Font Family), §Shapes, §Do's and Don'ts.
+   Original source: VoltAgent, awesome-design-md, revision fcc70284932276d085f01ef9f83edde90b1258cb, MIT licence.
+   Scarcity (skill §Colors / §Do's and Don'ts): no coloured accent - black, white and greys only; no shadows, glows or
+   gradients; pill ghost buttons. Fonts: D-DIN (bundled, Datto Inc., SIL OFL 1.1) for display and UI, Inter fallback.
+   Deliberate deviations (recorded per spec 7.2 / 7.1):
+     * Tag colours carry data, so the tag slots use a DESATURATED derived set rather than pure greys.
+     * Danger / "not protected" use a light red (spec 7.1 D), always with a text label.
+     * The app's .btn--primary sets a transparent border, so a true outline ghost button cannot be expressed in tokens;
+       the primary button is an inverted On Primary (white) fill with black text instead.
+   Roles the skill does not define are DERIVED and marked so; owner sign-off on first build.
+   Measured WCAG contrast ratios are asserted by tests/py/test_theme_contrast.py (see its docstring for the table). */
+:root[data-theme="spacex"] {
+  color-scheme: dark;
+  --font-ui: "D-DIN", "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Mono", Consolas, monospace;   /* derived */
+  --font-display: "D-DIN", "Inter", "Arial Narrow", Arial, "Segoe UI", sans-serif;
+
+  /* palette (raw) */
+  --canvas-night: #000000;  --canvas-night-soft: #0a0a0a;  --on-primary: #ffffff;  --on-primary-mute: #f0f0fa;
+  --hairline-on-dark: #3a3a3f;  --ink-mute: #5a5a5f;
+  --spx-gray: #a0a0a8;  --spx-gray-mid: #8a8a90;  --spx-raised: #1a1a1f;   /* derived greys */
+
+  /* roles */
+  --canvas-bg: var(--canvas-night);
+  --weekend-shade: var(--canvas-night-soft);
+  --today-shade: rgba(255, 255, 255, 0.08);               /* derived: no colour accent */
+  --grid-line: #1a1a1a;
+  --grid-line-strong: var(--hairline-on-dark);
+  --text: var(--on-primary);
+  --text-secondary: var(--on-primary-mute);               /* spec 7.1 */
+  --ruler-bg: var(--canvas-night);
+  --ruler-text: var(--on-primary-mute);
+  --ruler-text-dim: var(--spx-gray);
+  --ruler-line: var(--hairline-on-dark);
+  --now-line: var(--on-primary);                          /* spec 7.1: white outline marker, no colour */
+  --now-line-on-ruler: var(--on-primary);
+  --minimap-bg: var(--canvas-night);
+  --minimap-bar: var(--spx-gray-mid);
+  --minimap-frame: var(--on-primary);
+  --minimap-frame-fill: rgba(255, 255, 255, 0.12);
+  --focus-ring: var(--on-primary);
+  --focus-ring-on-dark: var(--on-primary);
+  --bar-selected-outline: var(--on-primary);
+  --bar-untagged: var(--ink-mute);
+  --bar-untagged-fg: var(--on-primary);
+  --bar-log-outline: var(--on-primary);
+  --drag-ghost: rgba(255, 255, 255, 0.25);
+  --marquee-fill: rgba(255, 255, 255, 0.08);
+  --marquee-stroke: var(--on-primary);
+  --highlight-external: #c8c8d0;
+  --lane-header-bg: var(--canvas-night-soft);
+  --lane-header-text: var(--on-primary);
+
+  /* chrome */
+  --panel-bg: var(--canvas-night-soft);
+  --panel-header-bg: var(--canvas-night);
+  --panel-header-text: var(--on-primary);
+  --border: var(--hairline-on-dark);
+  --button-primary-bg: var(--on-primary);                 /* see header */
+  --button-primary-fg: var(--canvas-night);
+  --danger: #ff8a8a;                                      /* derived light red, with a text label */
+  --radius: 8px;
+  --radius-sm: 32px;                                      /* skill: pill buttons */
+  --info-bg: var(--spx-raised);  --info-fg: var(--on-primary-mute);
+  --warn-bg: #1f1f1f;  --warn-fg: var(--on-primary);
+  --error-bg: #2a1010;  --error-fg: #ff9b9b;              /* derived */
+
+  --card-border: var(--hairline-on-dark);
+  --input-bg: var(--canvas-night-soft);
+  --input-border: var(--spx-gray-mid);
+  --input-border-focus: var(--on-primary);
+  --input-error: #ff8a8a;
+  --control-hover: rgba(240, 240, 250, 0.08);
+  --control-pressed: rgba(240, 240, 250, 0.16);
+  --control-disabled-fg: var(--ink-mute);
+  --row-hover: rgba(255, 255, 255, 0.05);
+  --row-selected: rgba(255, 255, 255, 0.12);
+  --active-bg: var(--on-primary);
+  --active-fg: var(--canvas-night);
+  --button-primary-hover: #dcdce6;                        /* derived */
+  --button-primary-pressed: #c0c0ca;                      /* derived */
+  --link: var(--on-primary);                              /* skill: underlined white */
+  --link-hover: var(--on-primary-mute);
+  --on-dark-text: var(--on-primary);
+  --on-dark-dim: var(--spx-gray);
+  --on-dark-hover: rgba(255, 255, 255, 0.10);
+  --on-dark-pressed: rgba(255, 255, 255, 0.20);
+  --on-dark-border: var(--hairline-on-dark);
+  --on-dark-active-bg: var(--on-primary);
+  --on-dark-active-fg: var(--canvas-night);
+  --on-dark-disabled: var(--ink-mute);
+  --tooltip-bg: var(--canvas-night-soft);
+  --tooltip-fg: var(--on-primary);
+  --popup-bg: var(--canvas-night-soft);
+  --popup-border: var(--hairline-on-dark);
+  --shadow: none;                                         /* skill: no shadows */
+  --shadow-sm: none;
+  --scrollbar-thumb: var(--hairline-on-dark);
+  --scrollbar-thumb-hover: var(--ink-mute);
+  --hatch-backing: var(--canvas-night);
+  --hatch-label-bg: var(--canvas-night);
+  --hatch-label-fg: var(--on-primary);
+  --scrim: rgba(0, 0, 0, 0.60);
+
+  /* tag base hues 0-7 (slots 8-15 are the same hues, hatched) and their label colors - DELIBERATE DEVIATION: the skill
+     forbids colour accents, but tags carry data, so this is a desaturated derived set (spec 7.2) */
+  --tag-0: #8a9bb0;  --tag-0-fg: #000000;     /* steel blue-grey */
+  --tag-1: #d8cfb8;  --tag-1-fg: #000000;     /* sand-grey */
+  --tag-2: #9a7f8f;  --tag-2-fg: #000000;     /* mauve-grey */
+  --tag-3: #b8d0c0;  --tag-3-fg: #000000;     /* sage-grey */
+  --tag-4: #a08a6c;  --tag-4-fg: #000000;     /* taupe */
+  --tag-5: #c0c8e0;  --tag-5-fg: #000000;     /* lavender-grey */
+  --tag-6: #7f9a8a;  --tag-6-fg: #000000;     /* green-grey */
+  --tag-7: #d8b8b8;  --tag-7-fg: #000000;     /* rose-grey */
+
+  /* extra roles (spec 7.1 "roles the skills do not cover"); all derived unless noted */
+  --today-marker: var(--on-primary);                      /* spec 7.1 */
+  --lane-separator: #6a6a70;
+  --drop-target: var(--on-primary);
+  --chip-implied-bg: var(--canvas-night-soft);  --chip-implied-fg: var(--spx-gray);  --chip-implied-border: var(--hairline-on-dark);
+  --retired-bg: var(--hairline-on-dark);  --retired-fg: var(--on-primary);
+  --filter-active-bg: var(--on-primary);  --filter-active-fg: var(--canvas-night);  --filter-active-border: var(--on-primary);
+  --protect-ok: var(--on-primary-mute);  --protect-pending: var(--spx-gray);  --protect-bad: #ff8a8a;   /* icon + text carry state */
+  --minimap-files-image: var(--on-primary);  --minimap-files-other: var(--spx-gray-mid);
+  --file-entry: var(--spx-gray);  --file-entry-fg: var(--on-primary);  --file-selected: var(--on-primary);
+  --file-placeholder-bg: var(--spx-raised);  --file-placeholder-fg: var(--spx-gray);
+  --file-badge-bg: var(--on-primary);  --file-badge-fg: var(--canvas-night);
+  --hal-eye: #d00000;  --hal-glow: rgba(208, 0, 0, 0.5);                  /* derived (only shown in Meridian) */
+  --monolith: #000000;  --monolith-glow: rgba(240, 240, 250, 0.25);       /* derived (only shown in Meridian) */
+}
