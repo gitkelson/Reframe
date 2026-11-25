@@ -8,7 +8,7 @@ Never write the user's personal paths, email addresses or account names into fil
 
 Ask all of these before installing anything. Offer the default in brackets. Detect the OS yourself; do not ask.
 
-1. **Install location** for the app folder [the folder this repo is in].
+1. **Install location** for the app folder. Offer: leave it where this repo was cloned, `%LOCALAPPDATA%\Programs\Reframe` (Windows), or `~/Applications/Reframe` (macOS). Do not guess a location from the user's home folder listing or from other folders you can see, and never write a resolved personal path into any file of this repo.
 2. **Calendar integration** — none / ICS file or URL (any OS; Google, Outlook.com, iCloud, Exchange publish ICS links) / classic Outlook desktop (Windows only; needs `pywin32`; the new Outlook has no COM interface and cannot be used) [none; add ICS later in the app]. On macOS the Calendar app has no ICS URL; export or subscribe via an ICS link, or ask whether to build an adapter (§4).
 3. **File search** — Windows: use voidtools Everything [yes]. macOS: Everything does not exist; ask whether to build a Spotlight (`mdfind`) adapter or turn file search off [off]. The file timeline browser works without it.
 4. **Start at sign-in**, hidden in the tray [no]. **Minimize/close to tray** [yes]. **Sync calendars on launch** [yes if a calendar was chosen].
